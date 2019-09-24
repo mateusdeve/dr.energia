@@ -1,0 +1,52 @@
+#whp {
+  border-radius: 40px;
+  text-align: center;
+  background: rgba(0, 0, 0, 0.70);
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  width: 40px;
+  height: 40px;
+  line-height: 40px;
+  z-index: 999;
+  text-decoration: none;
+  color: white;
+  transition: width .2s;
+  cursor:pointer;
+}
+
+#whp-text {
+  display: none;
+  opacity: 0;
+  transition: opacity .3s;
+
+}
+
+.btn-xl {
+  padding: 1.25rem 2.25rem !important;
+  font-size: 0.85rem !important;
+  font-weight: 700 !important;
+  text-transform: uppercase !important;
+  border: none !important;
+  border-radius: 10rem !important;
+}
+
+.btnjunto{
+  margin-left: 32% !important;
+}
+
+.inpu{
+  border:none;
+  height: 0;
+  width: 80px;
+}
+
+.inpuval{
+  border:none;
+  height: 0;
+  width: 5px;
+}
+
+.cursor {
+  cursor: pointer;
+}

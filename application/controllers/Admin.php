@@ -1,0 +1,68 @@
+<?php
+defined('BASEPATH') OR exit('No direct script access allowed');
+
+class Admin extends CI_Controller {
+	private $post;
+
+	public function __construct() 
+    {
+        parent::__construct();
+        $this->post = $this->input->post();
+        $this->valida_logado();
+    }
+
+	public function index()
+	{
+		$data['js'] = array(
+			'modal_open'
+		);
+		
+    $data['nome'] = $_SESSION['login'];
+	$data['sessao'] =  $this->get_session();
+
+		
+    $this->load->view('head', $data);
+    $this->load->view('menuAdmin', $data);
+
+    $this->load_modal();
+    $this->load->view('admin_view', $data);
+    $this->load->view('footer',$data);
+
+	}
+
+	public function load_modal()
+    {
+        $modal = $this->session->flashdata('modal');
+        if(!empty($modal)){
+            $data['resposta'] = $modal;
+            $this->load->view('modal', $data);
+        }
+        
+    }
+
+    public function get_session(){
+            
+            $sessao = $this->session->all_userdata();
+            if(isset($sessao['logado'])){
+                return $sessao;
+            }
+            return array(
+                
+                'logado' => FALSE
+                
+                );
+            
+  	}
+
+  	public function valida_logado(){
+  		
+          $sessao = $this->session->all_userdata();
+  		if( !isset($sessao['logado']) || $sessao['logado'] == FALSE ){
+  			redirect('../login', 'redirect');
+          }
+
+        if($sessao['perfil'] != 'admin') {
+            redirect('../login', 'redirect');
+        }
+  	}
+}
